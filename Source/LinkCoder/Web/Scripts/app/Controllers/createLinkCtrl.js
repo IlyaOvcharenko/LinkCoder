@@ -1,7 +1,12 @@
 ﻿linksShortinerControllers.controller('createLinkCtrl', [
-    '$scope', '$rootScope', '$location',
-    function ($scope, $rootScope, $location) {
+    '$scope', '$rootScope', 'Links',
+    function ($scope, $rootScope, Links) {
         $rootScope.currentTab = 'create';
+
+        $scope.onShortenBtnClick = function() {
+            $scope.shortLink = Links.create({ originalLink: $scope.originalLink, userId: $rootScope.UserId }, function () {
+            });
+        };
     }
 ]);
 

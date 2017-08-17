@@ -2,10 +2,11 @@
     '$scope', '$rootScope', 'Users',
 function ($scope, $rootScope, Users) {
     $scope.auth = function () {
-        $rootScope.User = localStorage.getItem('userId');
-        if (!$rootScope.User) {
-            $rootScope.User = Users.create({}, function () {
-                localStorage.setItem('userId', $rootScope.User.Id);
+        $rootScope.UserId = localStorage.getItem('userId');
+        if (!$rootScope.UserId) {
+            Users.create({}, function (data) {
+                localStorage.setItem('userId', data.Id);
+                $rootScope.UserId = data.Id;
             });
         }
         

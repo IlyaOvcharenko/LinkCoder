@@ -1,6 +1,6 @@
 ﻿linksShortinerControllers.controller('historyCtrl', [
-    '$scope', '$rootScope', '$location',
-    function ($scope, $rootScope, $location) {
+    '$scope', '$rootScope',
+    function ($scope, $rootScope) {
         $rootScope.currentTab = 'history';
     }
 ]);
