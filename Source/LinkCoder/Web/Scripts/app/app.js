@@ -1,4 +1,4 @@
-﻿var linksShortinerApp = angular.module('linksShortinerApp', ['ngRoute', 'linksShortinerControllers', 'ngResource', 'ngCookies']);
+﻿var linksShortinerApp = angular.module('linksShortinerApp', ['ngRoute', 'linksShortinerControllers', 'ngResource']);
 
 linksShortinerApp.factory('Users', ['$resource',
     function ($resource) {

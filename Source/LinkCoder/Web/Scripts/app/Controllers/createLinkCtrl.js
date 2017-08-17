@@ -1,7 +1,7 @@
 ﻿linksShortinerControllers.controller('createLinkCtrl', [
-    '$scope', '$rootScope', 'Users', '$location',
-function ($scope, $rootScope, Users, $location) {
-    
-}
+    '$scope', '$rootScope', '$location',
+    function ($scope, $rootScope, $location) {
+        $rootScope.currentTab = 'create';
+    }
 ]);
 

@@ -19,7 +19,7 @@ namespace Web
                         "~/Scripts/App/Common/filters.js", "~/Scripts/App/Common/utilities.js",
                         "~/Scripts/App/Controllers/userCtrl.js",
                         "~/Scripts/App/Controllers/createLinkCtrl.js",
-                        "~/Scripts/App/Controllers/linksListCtrl.js"));
+                        "~/Scripts/App/Controllers/historyCtrl.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.

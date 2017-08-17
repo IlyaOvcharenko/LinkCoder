@@ -1,11 +1,11 @@
 ﻿linksShortinerControllers.controller('userCtrl', [
-    '$scope', '$rootScope', 'Users', '$location', '$cookies',
-function ($scope, $rootScope, Users, $location, $cookies) {
+    '$scope', '$rootScope', 'Users',
+function ($scope, $rootScope, Users) {
     $scope.auth = function () {
-        $rootScope.User = $cookies.get('userId');
+        $rootScope.User = localStorage.getItem('userId');
         if (!$rootScope.User) {
             $rootScope.User = Users.create({}, function () {
-                $cookies.put('userId', $rootScope.User.Id);
+                localStorage.setItem('userId', $rootScope.User.Id);
             });
         }
         

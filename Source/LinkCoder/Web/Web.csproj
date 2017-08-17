@@ -201,6 +201,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\Controllers\createLinkCtrl.js" />
+    <Content Include="Scripts\app\Controllers\historyCtrl.js" />
     <Content Include="Scripts\app\Controllers\userCtrl.js" />
     <Content Include="Scripts\app\routes.js" />
     <Content Include="Scripts\bootstrap.js" />

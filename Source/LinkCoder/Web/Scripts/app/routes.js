@@ -6,14 +6,14 @@
                 templateUrl: 'Partials/CreateLink.html',
                 controller: 'createLinkCtrl'
             }).
-            when('/links', {
-                templateUrl: 'Partials/LinksList.html',
-                controller: 'linksListCtrl'
+            when('/history', {
+                templateUrl: 'Partials/History.html',
+                controller: 'historyCtrl'
             }).
-            when('/:id', {
-                templateUrl: 'Partials/LinksList.html',
-                controller: 'linksListCtrl'
-            }).
+            //when('/:id', {
+            //    templateUrl: 'Partials/History.html',
+            //    controller: 'historyCtrl'
+            //}).
             otherwise({
                 redirectTo: '/'
             });
