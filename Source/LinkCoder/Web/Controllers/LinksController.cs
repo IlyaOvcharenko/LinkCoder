@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using BusinessLogic.Services.Interfaces;
 using Data;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -17,9 +18,9 @@ namespace Web.Controllers
             _linkService = linkService;
         }
 
-        public Link Post([FromBody]string originalLink, [FromBody]Guid userId)
+        public Link Post(LinkViewModel model)
         {
-            var shortLink = _linkService.CreateLink(originalLink, userId);
+            var shortLink = _linkService.CreateLink(model.OriginalLink, model.UserId);
             return shortLink;
         }
     }

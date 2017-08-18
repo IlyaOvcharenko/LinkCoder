@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace Data
 {
     public class Link
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
         public string OriginalLink { get; set; }
@@ -18,6 +20,6 @@ namespace Data
 
         public Guid UserId { get; set; }
 
-        public virtual User User { get; set; }
+        public User User { get; set; }
     }
 }

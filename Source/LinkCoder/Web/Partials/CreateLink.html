@@ -7,4 +7,9 @@
             <button class="btn btn-primary" ng-click="onShortenBtnClick()">Shorten</button>
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-sm-6">
+            <span ng-hide="!shortLink">Short link: <a ng-href="{{shortLink}}">{{shortLink}}</a></span>
+        </div>
+    </div>
 </form>
