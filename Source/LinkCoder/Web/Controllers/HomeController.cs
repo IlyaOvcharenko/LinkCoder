@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
+using System.Web.Http.Dependencies;
 using System.Web.Mvc;
 using BusinessLogic.Services.Interfaces;
 using Ninject;
@@ -14,23 +16,32 @@ namespace Web.Controllers
 
         public HomeController()
         {
-           
+            //TODO: fix DI
+            _linkService = (ILinkService)(GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof (ILinkService)));
         }
 
         public HomeController(ILinkService linkService)
         {
             _linkService = linkService;
         }
-        [Route("{id}")]
-        public ActionResult Index(Guid? id)
+        
+        public ActionResult Index()
+        {
+           
+            return View();
+        }
+
+       
+        public ActionResult Redirect(Guid? id)
         {
             if (id.HasValue)
             {
                 var originalLink = _linkService.GetLink(id.Value);
-                return originalLink != null ? (ActionResult)Redirect(originalLink.OriginalLink) : new HttpNotFoundResult();
+                return originalLink != null && !string.IsNullOrEmpty(originalLink.OriginalLink)
+                    ? (ActionResult) View(model: originalLink.OriginalLink)
+                    : new HttpNotFoundResult();
             }
-                
-            return View();
+            return new HttpNotFoundResult();
         }
     }
 }

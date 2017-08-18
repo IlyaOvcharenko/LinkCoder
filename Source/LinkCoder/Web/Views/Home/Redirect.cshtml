@@ -1,0 +1,20 @@
+﻿@model String
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="refresh" content="0; url=@Model" />
+    <title>Redirecting</title>
+</head>
+<body>
+<script type="text/javascript">
+    
+    window.location = '@Model';
+</script>
+</body>
+</html>

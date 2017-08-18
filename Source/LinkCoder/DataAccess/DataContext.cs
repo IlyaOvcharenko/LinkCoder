@@ -21,9 +21,6 @@ namespace DataAccess
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-          
-            //TODO: modelBuilder.Entity<User>().HasMany(t => t.Links);
-
             modelBuilder.Entity<Link>().Property(t => t.OriginalLink).IsRequired();
             modelBuilder.Entity<Link>().Property(t => t.CreateDateTime).IsRequired();
             modelBuilder.Entity<Link>().Property(t => t.UserId).IsRequired();

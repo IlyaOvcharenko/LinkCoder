@@ -15,6 +15,12 @@ namespace Web
 
             routes.MapRoute(
                 name: "Default",
+                url: "{id}",
+                defaults: new { controller = "Home", action = "Redirect" }
+            );
+
+            routes.MapRoute(
+                name: "App",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
