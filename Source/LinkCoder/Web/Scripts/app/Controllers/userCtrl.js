@@ -1,7 +1,7 @@
 ﻿linksShortinerControllers.controller('userCtrl', [
     '$scope', '$rootScope', 'Users',
 function ($scope, $rootScope, Users) {
-    $scope.auth = function () {
+    $rootScope.auth = function () {
         $rootScope.UserId = localStorage.getItem('userId');
         if (!$rootScope.UserId) {
             Users.create({}, function (data) {
@@ -12,7 +12,7 @@ function ($scope, $rootScope, Users) {
         
     }
 
-    $scope.auth();
+    $rootScope.auth();
 }
 ]);
 

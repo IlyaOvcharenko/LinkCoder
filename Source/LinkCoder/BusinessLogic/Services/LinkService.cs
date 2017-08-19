@@ -26,7 +26,7 @@ namespace BusinessLogic.Services
 
         public EntityDataPage<Link> GetLinksDataPage(Guid userId, int pageNumber, int pageSize)
         {
-            var query = _linksRepository.GetAll().OrderByDescending(l=>l.CreateDateTime);
+            var query = _linksRepository.GetAll().Where(l=>l.UserId == userId).OrderByDescending(l=>l.CreateDateTime);
             var count = query.Count();
             var list = query.Skip(pageSize * pageNumber)
                     .Take(pageSize)
@@ -42,7 +42,7 @@ namespace BusinessLogic.Services
 
         public Link CreateLink(string originalLink, Guid userId)
         {
-            var entity = _linksRepository.GetBy(l => l.OriginalLink == originalLink);
+            var entity = _linksRepository.GetBy(l => l.OriginalLink == originalLink && l.UserId == userId);
             if (entity != null)
                 return entity;
 

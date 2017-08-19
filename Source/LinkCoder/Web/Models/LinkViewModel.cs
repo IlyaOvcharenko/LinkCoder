@@ -12,6 +12,5 @@ namespace Web.Models
         [Url]
         public string OriginalLink { get; set; }
 
-        public Guid UserId { get; set; }
     }
 }

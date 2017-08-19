@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
 using BusinessLogic.Services;
 using BusinessLogic.Services.Interfaces;
@@ -19,7 +20,7 @@ namespace Web.Controllers
         {
             _userService = userService;
         }
-
+        [Route("api/users")]
         // POST api/users
         public User Post()
         {
