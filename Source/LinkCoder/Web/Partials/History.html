@@ -1,1 +1,41 @@
-﻿
+﻿<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Date</th>
+        <th>Original link</th>
+        <th>Short link</th>
+        <th>Visits</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="histItem in history">
+        <td>{{histItem.CreateDateTime | date:'dd.MM.yyyy hh:mm:ss'}}</td>
+        <td><a ng-href="{{histItem.OriginalLink}}" target="_blank">{{histItem.OriginalLink}}</a></td>
+        <td><a ng-href="{{histItem.Id}}" ng-click="onShortLinkClick(histItem)" target="_blank">{{baseUrl + histItem.Id}}</a></td>
+        <td>{{histItem.Visits}}</td>
+    </tr>
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3">
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            <a href="" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </td>
+
+        </tr>
+    </tfoot>
+</table>

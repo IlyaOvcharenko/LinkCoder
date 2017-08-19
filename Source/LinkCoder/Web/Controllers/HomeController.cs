@@ -37,9 +37,11 @@ namespace Web.Controllers
             if (id.HasValue)
             {
                 var originalLink = _linkService.GetLink(id.Value);
-                return originalLink != null && !string.IsNullOrEmpty(originalLink.OriginalLink)
-                    ? (ActionResult) View(model: originalLink.OriginalLink)
-                    : new HttpNotFoundResult();
+                if (originalLink != null && !string.IsNullOrEmpty(originalLink.OriginalLink))
+                {
+                    _linkService.VisitLink(id.Value);
+                    return View(model: originalLink.OriginalLink);
+                }
             }
             return new HttpNotFoundResult();
         }
