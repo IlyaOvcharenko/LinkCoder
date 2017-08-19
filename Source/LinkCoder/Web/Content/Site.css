@@ -24,3 +24,19 @@ textarea {
 .top-menu a{
     cursor: pointer;    
 }
+
+.original-link {
+    display: inline-block;
+    max-width: 500px;
+    overflow: hidden;
+    -moz-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+}
+
+.pagination a[aria-label]{
+    cursor: pointer;
+}
+
+.pagination a:not([aria-label]):hover{
+    background-color: #fff;
+}

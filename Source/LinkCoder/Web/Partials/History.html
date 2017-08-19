@@ -10,7 +10,7 @@
     <tbody>
     <tr ng-repeat="histItem in history">
         <td>{{histItem.CreateDateTime | date:'dd.MM.yyyy hh:mm:ss'}}</td>
-        <td><a ng-href="{{histItem.OriginalLink}}" target="_blank">{{histItem.OriginalLink}}</a></td>
+        <td><a ng-href="{{histItem.OriginalLink}}" class="original-link" target="_blank">{{histItem.OriginalLink}}</a></td>
         <td><a ng-href="{{histItem.Id}}" ng-click="onShortLinkClick(histItem)" target="_blank">{{baseUrl + histItem.Id}}</a></td>
         <td>{{histItem.Visits}}</td>
     </tr>
@@ -21,14 +21,18 @@
             <td colspan="3">
                 <nav>
                     <ul class="pagination">
-                        <li>
-                            <a href="" aria-label="Previous">
+                        <li ng-class="pageNumber === 0 ? 'disabled' : '';">
+                            <a ng-click="onPrevClick()" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-
                         <li>
-                            <a href="" aria-label="Next">
+                            <a>
+                                {{pageNumber + 1}}
+                            </a>
+                        </li>
+                        <li ng-class="pageNumber + 1 === historyEntityPage.PageCount ? 'disabled' : '';">
+                            <a ng-click="onNextClick()"  aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
