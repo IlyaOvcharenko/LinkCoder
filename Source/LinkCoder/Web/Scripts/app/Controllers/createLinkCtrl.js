@@ -3,10 +3,12 @@
     function ($scope, $rootScope, Links, $location) {
         $rootScope.currentTab = 'create';
 
-        $scope.onShortenBtnClick = function() {
-            Links.create({ originalLink: $scope.originalLink, userId: $rootScope.UserId }, function (data) {
-                $scope.shortLink = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/' + data.Id;
-            });
+        $scope.onShortenBtnClick = function (createLinkForm) {
+            if (createLinkForm.$valid) {
+                Links.create({ originalLink: $scope.originalLink, userId: $rootScope.UserId }, function(data) {
+                    $scope.shortLink = $location.protocol() + '://' + $location.host() + ':' + $location.port() + '/' + data.Id;
+                });
+            }
         };
     }
 ]);
