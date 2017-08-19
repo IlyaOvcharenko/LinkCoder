@@ -1,7 +1,8 @@
 ﻿<form class="form-horizontal" name="createLinkForm">
     <div class="form-group">
         <div class="col-sm-6">
-            <input class="form-control" type="url" ng-model="originalLink" id="OriginalLink" placeholder="Paste original link" required />
+            <input class="form-control" type="url" ng-model="originalLink" id="OriginalLink" name="OriginalLink" placeholder="Paste original link" required/>
+            
         </div>
         <div class="col-sm-1">
             <button class="btn btn-primary" ng-click="onShortenBtnClick(createLinkForm)">Shorten</button>
@@ -10,6 +11,7 @@
     <div class="form-group">
         <div class="col-sm-6">
             <span ng-hide="!shortLink">Short link: <a ng-href="{{shortLink}}">{{shortLink}}</a></span>
+            <div class="alert alert-danger" role="alert" ng-hide="!errorMessage">{{errorMessage}}</div>
         </div>
     </div>
 </form>

@@ -25,10 +25,10 @@ namespace Web.Controllers
             return page;
         }
 
-        public Link Post(LinkViewModel model)
+        public IHttpActionResult Post(LinkViewModel model)
         {
             var shortLink = _linkService.CreateLink(model.OriginalLink, model.UserId);
-            return shortLink;
+            return Ok(new { shortLink = shortLink });
         }
     }
 }
