@@ -9,7 +9,7 @@ using DataAccess.Repositories.Interfaces;
 
 namespace BusinessLogic.Services
 {
-    public class UserService : IUserService
+    public class UserService : BaseService, IUserService
     {
         private readonly ICommonRepository<User> _userRepository;  
         public UserService(ICommonRepository<User> userRepository)
@@ -19,9 +19,12 @@ namespace BusinessLogic.Services
 
         public User CreateUser()
         {
-            var user = new User();
-            _userRepository.Create(user);
-            return user;
+            return Logger.ErrorListener(() =>
+            {
+                var user = new User();
+                _userRepository.Create(user);
+                return user;
+            });
         }
     }
 }

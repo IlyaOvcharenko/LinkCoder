@@ -10,7 +10,7 @@ using DataAccess.Repositories.Interfaces;
 
 namespace BusinessLogic.Services
 {
-    public class LinkService : ILinkService
+    public class LinkService : BaseService, ILinkService
     {
         private readonly ICommonRepository<Link> _linksRepository; 
 
@@ -21,55 +21,69 @@ namespace BusinessLogic.Services
 
         public Link GetLink(Guid id)
         {
-            return _linksRepository.GetBy(l => l.Id == id);
+            return Logger.ErrorListener(() => _linksRepository.GetBy(l => l.Id == id));
         }
 
         public EntityDataPage<Link> GetLinksDataPage(Guid userId, int pageNumber, int pageSize)
         {
-            var query = _linksRepository.GetAll().Where(l=>l.UserId == userId).OrderByDescending(l=>l.CreateDateTime);
-            var count = query.Count();
-            var list = query.Skip(pageSize * pageNumber)
+            return Logger.ErrorListener(() =>
+            {
+                var query =
+                    _linksRepository.GetAll().Where(l => l.UserId == userId).OrderByDescending(l => l.CreateDateTime);
+                var count = query.Count();
+                var list = query.Skip(pageSize*pageNumber)
                     .Take(pageSize)
                     .ToList();
-            return new EntityDataPage<Link>
-            {
-                EntityCount = count,
-                List = list,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+                return new EntityDataPage<Link>
+                {
+                    EntityCount = count,
+                    List = list,
+                    PageNumber = pageNumber,
+                    PageSize = pageSize
+                };
+            });
         }
 
         public Link CreateLink(string originalLink, Guid userId)
         {
-            var entity = _linksRepository.GetBy(l => l.OriginalLink == originalLink && l.UserId == userId);
-            if (entity != null)
-                return entity;
-
-            entity = new Link
+            return Logger.ErrorListener(() =>
             {
-                CreateDateTime = DateTime.Now,
-                OriginalLink = originalLink,
-                UserId = userId
-            };
+                var entity = _linksRepository.GetBy(l => l.OriginalLink == originalLink && l.UserId == userId);
+                if (entity != null)
+                    return entity;
 
-            _linksRepository.Create(entity);
+                entity = new Link
+                {
+                    CreateDateTime = DateTime.Now,
+                    OriginalLink = originalLink,
+                    UserId = userId
+                };
 
-            return entity;
+                _linksRepository.Create(entity);
+
+                return entity;
+            });
         }
 
         public Link VisitLink(Guid id)
         {
-            var link = GetLink(id);
-            link.Visits++;
-            _linksRepository.Update(link);
-            return link;
+            return Logger.ErrorListener(() =>
+            {
+                var link = GetLink(id);
+                link.Visits++;
+                _linksRepository.Update(link);
+                return link;
+            });
+
         }
 
         public void DeleteLink(Guid id)
         {
-            var link = GetLink(id);
-            _linksRepository.Delete(link);
+            Logger.ErrorListener(() =>
+            {
+                var link = GetLink(id);
+                _linksRepository.Delete(link);
+            });
         }
     }
 }
