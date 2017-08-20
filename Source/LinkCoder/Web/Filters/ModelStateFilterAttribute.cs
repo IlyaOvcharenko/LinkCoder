@@ -8,7 +8,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using Web.Halpers;
 
-namespace Web.Attributes
+namespace Web.Filters
 {
     public class ModelStateFilterAttribute : ActionFilterAttribute
     {

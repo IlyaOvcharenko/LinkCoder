@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using Web.Attributes;
+using Web.Filters;
 
 namespace Web
 {
@@ -21,7 +21,7 @@ namespace Web
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            config.Filters.Add(new ModelStateFilterAttribute());
+            config.Filters.Add(new ModelStateFilterAttribute());  
         }
     }
 }

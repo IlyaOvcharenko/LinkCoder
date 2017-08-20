@@ -8,9 +8,9 @@ linksShortinerApp.factory('Users', ['$resource',
     }
 ]);
 
-linksShortinerApp.factory('Links', ['$resource',
-    function ($resource) {
-        return $resource('api/Users/:userId/Links', { userId: '@userId' }, { create: { method: 'POST' }, query: { method: 'get', isArray: false } });
+linksShortinerApp.factory('Links', ['$resource', '$rootScope',
+    function ($resource, $rootScope) {
+        return $resource('api/Users/:userId/Links', { userId: '@userId' }, { create: { method: 'POST', headers: { 'Token': $rootScope.Token } }, query: { method: 'get', isArray: false, headers: { 'Token': $rootScope.Token } } });
     }
 ]);
 

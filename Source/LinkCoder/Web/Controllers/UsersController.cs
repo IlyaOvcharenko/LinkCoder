@@ -10,6 +10,7 @@ using BusinessLogic.Services.Interfaces;
 using Data;
 using DataAccess;
 using DataAccess.Repositories;
+using Web.Common;
 
 namespace Web.Controllers
 {
@@ -22,10 +23,10 @@ namespace Web.Controllers
         }
         [Route("api/users")]
         // POST api/users
-        public User Post()
+        public IHttpActionResult Post()
         {
             var user = _userService.CreateUser();
-            return user;
+            return Ok(new { user = user, token = TokenGenerator.GenerateToken(user.Id.ToString()) });
         }
 
         

@@ -7,6 +7,7 @@ using System.Web.Http;
 using BusinessLogic.Paging;
 using BusinessLogic.Services.Interfaces;
 using Data;
+using Web.Filters;
 using Web.Models;
 
 namespace Web.Controllers
@@ -19,6 +20,7 @@ namespace Web.Controllers
             _linkService = linkService;
         }
 
+        [TokenAuth]
         [Route("api/users/{userId}/links")]
         public EntityDataPage<Link> Get(int pageNumber, int pageSize, Guid userId)
         {
@@ -26,6 +28,7 @@ namespace Web.Controllers
             return page;
         }
 
+        [TokenAuth]
         [Route("api/users/{userId}/links")]
         public IHttpActionResult Post([FromBody]LinkViewModel model, [FromUri]Guid userId)
         {
