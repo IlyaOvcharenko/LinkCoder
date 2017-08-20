@@ -10,7 +10,7 @@ linksShortinerApp.factory('Users', ['$resource',
 
 linksShortinerApp.factory('Links', ['$resource', '$rootScope',
     function ($resource, $rootScope) {
-        return $resource('api/Users/:userId/Links', { userId: '@userId' }, { create: { method: 'POST', headers: { 'Token': $rootScope.Token } }, query: { method: 'get', isArray: false, headers: { 'Token': $rootScope.Token } } });
+        return $resource('api/Users/:userId/Links', { userId: '@userId' }, { create: { method: 'POST', headers: { 'Token': function() { return $rootScope.Token } } }, query: { method: 'get', isArray: false, headers: { 'Token' : function() { return $rootScope.Token } } } });
     }
 ]);
 
