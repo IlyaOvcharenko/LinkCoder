@@ -8,9 +8,9 @@ namespace BusinessLogic.Services.Interfaces
     {
         Link GetLink(Guid id);
 
-        EntityDataPage<Link> GetLinksDataPage(Guid userId, int pageNumber, int pageSize);
+        EntityDataPage<Link> GetLinksDataPage(int userId, int pageNumber, int pageSize);
 
-        Link CreateLink(string originalLink, Guid userId);
+        Link CreateLink(string originalLink, int userId);
 
         Link VisitLink(Guid id);
 

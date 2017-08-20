@@ -24,7 +24,7 @@ namespace BusinessLogic.Services
             return Logger.ErrorListener(() => _linksRepository.GetBy(l => l.Id == id));
         }
 
-        public EntityDataPage<Link> GetLinksDataPage(Guid userId, int pageNumber, int pageSize)
+        public EntityDataPage<Link> GetLinksDataPage(int userId, int pageNumber, int pageSize)
         {
             return Logger.ErrorListener(() =>
             {
@@ -44,7 +44,7 @@ namespace BusinessLogic.Services
             });
         }
 
-        public Link CreateLink(string originalLink, Guid userId)
+        public Link CreateLink(string originalLink, int userId)
         {
             return Logger.ErrorListener(() =>
             {

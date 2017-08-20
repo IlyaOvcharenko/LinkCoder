@@ -5,7 +5,7 @@
 
         $scope.onShortenBtnClick = function(createLinkForm) {
             if (createLinkForm.$valid) {
-                if (!$rootScope.UserId) {
+                if (!$rootScope.Token) {
                     var listener = $rootScope.$watch("UserId", function () { $scope.createLink(listener); });
                 } else {
                     $scope.createLink();
@@ -14,7 +14,7 @@
         };
 
         $scope.createLink = function (callBack) {
-            if (!$rootScope.UserId)
+            if (!$rootScope.Token)
                 return;
             Links.create({ originalLink: $scope.originalLink, userId: $rootScope.UserId })
                 .$promise

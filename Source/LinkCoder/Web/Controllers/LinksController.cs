@@ -22,7 +22,7 @@ namespace Web.Controllers
 
         [TokenAuth]
         [Route("api/users/{userId}/links")]
-        public EntityDataPage<Link> Get(int pageNumber, int pageSize, Guid userId)
+        public EntityDataPage<Link> Get(int pageNumber, int pageSize, int userId)
         {
             var page = _linkService.GetLinksDataPage(userId, pageNumber, pageSize);
             return page;
@@ -30,7 +30,7 @@ namespace Web.Controllers
 
         [TokenAuth]
         [Route("api/users/{userId}/links")]
-        public IHttpActionResult Post([FromBody]LinkViewModel model, [FromUri]Guid userId)
+        public IHttpActionResult Post([FromBody]LinkViewModel model, [FromUri]int userId)
         {
             var shortLink = _linkService.CreateLink(model.OriginalLink, userId);
             return Ok(new { shortLink = shortLink });

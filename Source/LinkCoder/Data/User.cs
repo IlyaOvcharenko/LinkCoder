@@ -10,7 +10,7 @@ namespace Data
     public class User
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public virtual ICollection<Link> Links { get; set; } 
     }
